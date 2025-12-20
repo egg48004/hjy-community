@@ -1,0 +1,36 @@
+### Maven ###
+target/
+!.mvn/wrapper/maven-wrapper.jar
+
+### Maven Wrapper ###
+!.mvn/
+!mvnw
+!mvnw.cmd
+
+### IntelliJ IDEA ###
+.idea/
+*.iml
+*.ipr
+*.iws
+out/
+
+### VS Code ###
+.vscode/
+
+### Logs ###
+*.log
+
+### OS ###
+.DS_Store
+Thumbs.db
+
+### Env / secrets ###
+.env
+*.local
+application-*.local.yml
+application-*.local.properties
+
+# Real config with secrets (DO NOT COMMIT)
+application.yml
+application-druid.yml
+

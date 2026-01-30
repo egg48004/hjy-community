@@ -26,4 +26,15 @@ public class HjyCommunityService implements com.msb.hjycommunity.community.servi
         hjyCommunity.setCommunityCode(CODE_PREFIX + System.currentTimeMillis());
         return hjyCommunityMapper.insert(hjyCommunity);
     }
+
+    @Override
+    public HjyCommunity selectHjyCommunityById(Long communityId) {
+        return hjyCommunityMapper.selectById(communityId);
+    }
+
+    @Override
+    public int updateHjyCommunity(HjyCommunity hjyCommunity) {
+        return hjyCommunityMapper.updateById(hjyCommunity);
+    }
+
 }

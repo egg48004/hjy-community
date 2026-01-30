@@ -28,5 +28,15 @@ public class HjyCommunityController extends BaseController {
         return toAjax(hjyCommunityService.insertHiyCommunity(hjyCommunity));
     }
 
+    @GetMapping("/{communityId}")// {communityId} is a path variable
+    public BaseResponse getInfo(@PathVariable("communityId") Long communityId){
+        return BaseResponse.success(hjyCommunityService.selectHjyCommunityById(communityId));
+    }
+    @PutMapping// HTTP PUT method indicating an update operation (semantic)
+    public BaseResponse edit(@RequestBody HjyCommunity hjyCommunity){ //// @RequestBody is used to get parameters from the request body
+
+        return toAjax(hjyCommunityService.updateHjyCommunity(hjyCommunity));
+    }
+
 }
 

@@ -8,5 +8,12 @@ import java.util.List;
 public interface HjyCommunityService {
 
     List<HjyCommunityDto> queryList(HjyCommunity hjyCommunity);
+
+
     int insertHiyCommunity(HjyCommunity hjyCommunity);
+
+    //select community by id
+    HjyCommunity selectHjyCommunityById(Long communityId);
+
+    int updateHjyCommunity(HjyCommunity hjyCommunity);
 }

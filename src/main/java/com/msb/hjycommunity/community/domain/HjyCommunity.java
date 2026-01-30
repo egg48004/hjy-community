@@ -17,8 +17,8 @@ public class HjyCommunity extends BaseEntity {
     private String communityCityCode;
     private String communityTownCode;
     private String communityDetailedAddress;
-    private String longitude;
-    private String latitude;
+    private String communityLongitude;
+    private String communityLatitude;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING)
     private Long deptId; //物业id
@@ -39,8 +39,8 @@ public class HjyCommunity extends BaseEntity {
                 ", communityCityCode='" + communityCityCode + '\'' +
                 ", communityTownCode='" + communityTownCode + '\'' +
                 ", communityDetailedAddress='" + communityDetailedAddress + '\'' +
-                ", longitude='" + longitude + '\'' +
-                ", latitude='" + latitude + '\'' +
+                ", longitude='" + communityLongitude + '\'' +
+                ", latitude='" + communityLatitude + '\'' +
                 ", deptId=" + deptId +
                 ", communitySort=" + communitySort +
                 '}';
@@ -54,8 +54,8 @@ public class HjyCommunity extends BaseEntity {
         this.communityCityCode = communityCityCode;
         this.communityTownCode = communityTownCode;
         this.communityDetailedAddress = communityDetailedAddress;
-        this.longitude = longitude;
-        this.latitude = latitude;
+        this.communityLongitude = longitude;
+        this.communityLatitude = latitude;
         this.deptId = deptId;
         this.communitySort = communitySort;
     }
@@ -116,20 +116,20 @@ public class HjyCommunity extends BaseEntity {
         this.communityDetailedAddress = communityDetailedAddress;
     }
 
-    public String getLongitude() {
-        return longitude;
+    public String getCommunityLongitude() {
+        return communityLongitude;
     }
 
-    public void setLongitude(String longitude) {
-        this.longitude = longitude;
+    public void setCommunityLongitude(String communityLongitude) {
+        this.communityLongitude = communityLongitude;
     }
 
-    public String getLatitude() {
-        return latitude;
+    public String getCommunityLatitude() {
+        return communityLatitude;
     }
 
-    public void setLatitude(String latitude) {
-        this.latitude = latitude;
+    public void setCommunityLatitude(String communityLatitude) {
+        this.communityLatitude = communityLatitude;
     }
 
     public Long getDeptId() {

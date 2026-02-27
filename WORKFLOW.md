@@ -9,3 +9,8 @@
 - Decided to stay on `main` branch for now (solo development)
 - Added `.gitignore` to exclude IDE files, build output, and real config
 - Chose to use commit messages as daily work log
+
+-----------------------------------------
+### 2026-2-27
+- Add deleteHjyCommunity method to service and controller
+

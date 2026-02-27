@@ -6,6 +6,7 @@ import com.msb.hjycommunity.community.mapper.HjyCommunityMapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -35,6 +36,11 @@ public class HjyCommunityService implements com.msb.hjycommunity.community.servi
     @Override
     public int updateHjyCommunity(HjyCommunity hjyCommunity) {
         return hjyCommunityMapper.updateById(hjyCommunity);
+    }
+
+    @Override
+    public int deleteHjyCommunity(Long[] communityIds) {
+        return hjyCommunityMapper.deleteBatchIds(Arrays.asList(communityIds));
     }
 
 }

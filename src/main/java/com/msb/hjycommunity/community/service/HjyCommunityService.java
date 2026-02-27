@@ -16,4 +16,6 @@ public interface HjyCommunityService {
     HjyCommunity selectHjyCommunityById(Long communityId);
 
     int updateHjyCommunity(HjyCommunity hjyCommunity);
+
+    int deleteHjyCommunity(Long[]communityIds);
 }

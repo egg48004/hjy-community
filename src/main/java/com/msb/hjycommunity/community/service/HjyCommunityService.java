@@ -2,6 +2,7 @@ package com.msb.hjycommunity.community.service;
 
 import com.msb.hjycommunity.community.domain.HjyCommunity;
 import com.msb.hjycommunity.community.domain.dto.HjyCommunityDto;
+import com.msb.hjycommunity.community.domain.vo.HjyCommunityVo;
 
 import java.util.List;
 
@@ -18,4 +19,6 @@ public interface HjyCommunityService {
     int updateHjyCommunity(HjyCommunity hjyCommunity);
 
     int deleteHjyCommunity(Long[]communityIds);
+
+    List<HjyCommunityVo> queryPulDown(HjyCommunity hjyCommunity);
 }

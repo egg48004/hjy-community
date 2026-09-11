@@ -1,0 +1,77 @@
+# 项目相关配置
+hjy-community:
+  name: hjy-community
+  version: 1.0.0
+  profile: D:\idea\ideaProjects\hjy-community
+
+# 开发环境配置
+server:
+  port: 8080
+  servlet:
+    context-path: /hejiayun
+  tomcat:
+    uri-encoding: UTF-8
+    max-threads: 800
+    min-spare-threads: 30
+
+# 日志配置
+logging:
+  level:
+    com.msb: debug
+    org.springframework: warn
+
+# Spring配置
+spring:
+  profiles:
+    active: druid
+  messages:
+    basename: i18n/messages
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/hejiayun_community?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+    druid:
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      max-wait: 60000
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      validation-query: SELECT 1 FROM DUAL
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+
+      stat-view-servlet:
+        enabled: true
+        url-pattern: /druid/*
+        login-username: admin
+        login-password: admin
+        reset-enable: false
+
+      web-stat-filter:
+        enabled: true
+        url-pattern: /*
+        exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*"
+
+# MyBatis-Plus配置
+mybatis-plus:
+  type-aliases-package: com.msb.hjycommunity.**.domain
+  mapper-locations: classpath:mapper/**/*Mapper.xml
+  config-location: classpath:mybatis/mybatis-config.xml
+  global-config:
+    db-config:
+      id-type: assign_id
+    banner: false
+
+# PageHelper分页插件
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+

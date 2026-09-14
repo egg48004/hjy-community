@@ -6,6 +6,7 @@ import ma.glasnost.orika.impl.DefaultMapperFactory;
 import ma.glasnost.orika.metadata.ClassMapBuilder;
 import ma.glasnost.orika.metadata.Type;
 import ma.glasnost.orika.metadata.TypeFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @author spikeCong
  * @date 2023/4/1
  **/
+@Slf4j
 public class OrikaUtils {
 
     //构造一个MapperFactory
@@ -60,8 +62,11 @@ public class OrikaUtils {
      */
     public static <S, T> T convert(S sourceEntity, Class<T> targetClass, Map<String, String> refMap) {
         if (sourceEntity == null) {
+            log.info(">>> [WHITEBOX][Orika] convert 入参 sourceEntity 为 null, 直接返回 null");
             return null;
         }
+        log.info(">>> [WHITEBOX][Orika] convert 进入, sourceClass={}, targetClass={}",
+                sourceEntity.getClass().getName(), targetClass.getName());
         return classMap(sourceEntity.getClass(), targetClass, refMap).map(sourceEntity, targetClass);
     }
 
@@ -153,7 +158,18 @@ public class OrikaUtils {
      * @return target
      */
     private <V, P> P map(V source, Class<P> target) {
-        return mapper.map(source, target);
+        log.info(">>> [WHITEBOX][Orika] OrikaUtils.map 进入, sourceClass={}, targetClass={}, 即将触发 Orika 反射 clone() 等操作",
+                source.getClass().getName(), target.getName());
+        try {
+            P result = mapper.map(source, target);
+            log.info(">>> [WHITEBOX][Orika] OrikaUtils.map 成功返回, resultClass={}, result={}",
+                    result == null ? "null" : result.getClass().getName(), result);
+            return result;
+        } catch (RuntimeException e) {
+            log.error(">>> [WHITEBOX][Orika] OrikaUtils.map 调用 mapper.map 失败, 异常类型={}, message={}",
+                    e.getClass().getName(), e.getMessage(), e);
+            throw e;
+        }
     }
 
     /**

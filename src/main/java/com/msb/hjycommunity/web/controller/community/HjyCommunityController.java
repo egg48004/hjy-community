@@ -47,14 +47,20 @@ public class HjyCommunityController extends BaseController {
     }
     @GetMapping("/queryPullDown")
     public BaseResponse queryPullDown(HjyCommunity hjyCommunity){
-        log.info("log() called with parameters => [hjyCommunity = {}]", hjyCommunity);
+        log.info(">>> [WHITEBOX][Controller] queryPullDown 进入, 请求参数 hjyCommunity={}, class={}",
+                hjyCommunity, hjyCommunity.getClass().getName());
         List<HjyCommunityVo> voList = null;
+
         try{
+            log.info(">>> [WHITEBOX][Controller] 开始调用 service.queryPulDown(...)");
             voList = hjyCommunityService.queryPulDown(hjyCommunity);
+            log.info(">>> [WHITEBOX][Controller] service.queryPulDown 调用完成, voList.size={}",
+                    voList == null ? 0 : voList.size());
         } catch (Exception e) {
+            log.warn(">>> [WHITEBOX][Controller] queryPulDown 抛出异常, 进入 catch 分支: {}", e.toString());
             log.warn("获取小区下拉列表失败！",e);
         }
-        log.info("log() returned: {}", voList);
+        log.info(">>> [WHITEBOX][Controller] queryPullDown 返回 voList={}", voList);
         return BaseResponse.success(voList);
 
 

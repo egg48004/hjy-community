@@ -10,6 +10,14 @@ public class LoginUser implements UserDetails {
 
     private SysUser sysUser;
 
+    public SysUser getSysUser() {
+        return sysUser;
+    }
+
+    public void setSysUser(SysUser sysUser) {
+        this.sysUser = sysUser;
+    }
+
     public LoginUser(SysUser sysUser) {
         this.sysUser = sysUser;
     }

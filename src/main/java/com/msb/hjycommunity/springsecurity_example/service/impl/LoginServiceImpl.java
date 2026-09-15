@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -48,6 +49,23 @@ public class LoginServiceImpl implements LoginService {
                 "登录成功",
                 map
         );
+
+    }
+
+    @Override
+    public ResponseResult logout() {//把token在redis里删除
+        UsernamePasswordAuthenticationToken authenticationToken =
+                (UsernamePasswordAuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
+        if (Objects.isNull(authenticationToken)){
+            throw new RuntimeException("获取用户认证信息失败");
+
+        }
+        LoginUser loginUser = (LoginUser) authenticationToken.getPrincipal();
+        Long userId = loginUser.getSysUser().getUserId();
+
+        redisCache.deleteObject("login:" + userId);
+        return new ResponseResult("注销成功", 200);
+
 
     }
 }

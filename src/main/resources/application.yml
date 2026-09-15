@@ -24,6 +24,9 @@ logging:
 spring:
   profiles:
     active: druid
+  redis:
+    host: 192.168.253.129
+    port: 6379
   messages:
     basename: i18n/messages
   datasource:

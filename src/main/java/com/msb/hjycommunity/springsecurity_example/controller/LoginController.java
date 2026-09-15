@@ -4,6 +4,7 @@ import com.msb.hjycommunity.springsecurity_example.common.ResponseResult;
 import com.msb.hjycommunity.springsecurity_example.entity.SysUser;
 import com.msb.hjycommunity.springsecurity_example.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,6 +18,11 @@ public class LoginController {
 
 
         return loginService.login(sysUser);
+    }
+
+    @GetMapping("/user/logout")
+    public ResponseResult logout(){
+        return loginService.logout();
     }
 
 }
